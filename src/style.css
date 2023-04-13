@@ -82,7 +82,9 @@ html {
   .cursor {
     display: none;
   }
-}.slider-viewport {
+}
+
+.slider-viewport {
   position: fixed;
   top: 0;
   left: 0;
@@ -111,6 +113,7 @@ html {
   height: 100%;
   width: 100%;
   background-size: cover;
+  background-position: 50% 50%;
   background-image: url('../images/cyberpunk-bg.jpg');
   
 }
@@ -143,6 +146,7 @@ html {
 .slider-mini-item .bg {
   height: 100%;
   width: 100%;
+  background-position: 50% 50%;
 }
 
 .slider-mini-item-1 .bg {
