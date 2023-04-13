@@ -1,0 +1,163 @@
+:root {
+  --color-primary: #ECF2F4;
+  --color-secondary: #fff;
+  --color-tertiary: #005A77;
+  --bodycopy: 16px;
+  --bodycopy-lh: 24px;
+  --font-base: "Inter", sans-serif;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-tertiary);
+  position: relative;
+  font-family: var(--font-base);
+  font-size: var(--font-size);
+}
+
+.header a::after {
+  content: "";
+  display: inline-block;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  right: 100%;
+  background: var(--color-tertiary);
+  position: absolute;
+  transition: right 0.3s ease;
+}
+
+.header a:hover::after {
+  right: 24px;
+}
+
+.header svg path {
+  stroke: var(--color-tertiary);
+}
+
+.cursor {
+  width: 24px;
+  height: 24px;
+  position: fixed;
+  z-index: 1;
+  border-radius: 96px;
+  top: 0;
+  left: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: var(--color-secondary);
+  text-transform: uppercase;
+  color: var(--color-negative);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-base);
+  font-size: var(--font-size);
+  font-weight: 600;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .cursor {
+    display: none;
+  }
+}.slider-viewport {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.slider-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 0;
+}
+
+.inner-container {
+  height: 100%;
+  overflow: hidden;
+}
+
+.bg {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-image: url('../images/cyberpunk-bg.jpg');
+  
+}
+
+.bg2 {
+  background-image: url('../images/horizon-bg.jpg');
+}
+
+.bg3 {
+  background-image: url('../images/the-witcher-bg.jpg');
+}
+
+.slider-mini {
+  position: fixed;
+  z-index: 3;
+  height: 415px;
+  width: 302px;
+  overflow: hidden;
+  left: calc(25vw - 302px / 2);
+  top: calc(50vh - 415px / 2);
+}
+
+.slider-mini-item {
+  height: 415px;
+  width: 302px;
+  position: absolute;
+  visibility: hidden;
+}
+
+.slider-mini-item .bg {
+  height: 100%;
+  width: 100%;
+}
+
+.slider-mini-item-1 .bg {
+  background-size: cover;
+  background-image: url('../images/cyberpunk-mini.jpg');
+}
+
+.slider-mini-item-2 .bg {
+  background-image: url('../images/horizon-mini.jpg');
+}
+
+.slider-mini-item-3 .bg {
+  background-image: url('../images/the-witcher-mini.jpg');
+}
+
+.slider-section.active .bg {
+  transform: translateY(-100%);
+}
