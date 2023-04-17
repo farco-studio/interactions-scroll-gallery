@@ -1,10 +1,11 @@
 :root {
   --color-primary: #ECF2F4;
   --color-secondary: #fff;
-  --color-tertiary: #005A77;
+  --color-tertiary: #000;
   --bodycopy: 16px;
   --bodycopy-lh: 24px;
   --font-base: "Inter", sans-serif;
+  --font-display: 'Butler', sans-serif;
 }
 
 body,
@@ -28,7 +29,7 @@ html {
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: var(--color-tertiary);
+  color: var(--color-primary);
   position: relative;
   font-family: var(--font-base);
   font-size: var(--font-size);
@@ -41,7 +42,7 @@ html {
   bottom: -2px;
   left: 0;
   right: 100%;
-  background: var(--color-tertiary);
+  background: var(--color-primary);
   position: absolute;
   transition: right 0.3s ease;
 }
@@ -51,7 +52,37 @@ html {
 }
 
 .header svg path {
+  stroke: var(--color-primary);
+}
+
+.header.is-first svg path {
   stroke: var(--color-tertiary);
+}
+
+.header.is-first a::after {
+  background: var(--color-tertiary);
+}
+
+.header.is-first a {
+ color: var(--color-tertiary);
+}
+
+.side-text {
+  position: absolute;
+  left: 24px;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  text-align: center;
+  text-transform: uppercase;
+  font-family: var(--font-base);
+  color: var(--color-primary);
+}
+
+.section-1 .side-text {
+  color: var(--color-tertiary);
 }
 
 .cursor {
@@ -165,3 +196,25 @@ html {
 .slider-section.active .bg {
   transform: translateY(-100%);
 }
+
+.text {
+  position: absolute;
+  z-index: 1;
+  color: var(--color-primary);
+  bottom: 25%;
+  font-size: 80px;
+  width: 50%;
+  text-align: center;
+  right: 0;
+  font-family: var(--font-display);
+  font-weight: 250;
+  letter-spacing: -3;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.text div {
+  margin-right: 12px;
+}
+

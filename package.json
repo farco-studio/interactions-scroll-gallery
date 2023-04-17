@@ -1,6 +1,7 @@
 {
   "name": "ScrollGallery",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "scripts": {
     "start": "parcel src/index.html --open",

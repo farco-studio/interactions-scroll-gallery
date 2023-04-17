@@ -18,6 +18,7 @@ const mySections = {
 // Inicializamos las variables que necesitamos para el control de la animación
 let currentSection = -1;
 let isAnimating = false;
+let header = document.querySelector('.header')
 
 // Función para envolver el índice de la sección
 const wrapIndex = (min, max, index) => {
@@ -33,6 +34,7 @@ const animateSection = (sectionsObj, index, direction) => {
   const miniItems = sectionsObj.miniItems;
   const miniItemsBg = sectionsObj.miniItemsBg;
   const miniItemsBgContainer = sectionsObj.miniItemsBgContainer;
+
 
   // Envolvemos el índice de la sección
   index = wrapIndex(0, sections.length, index);
@@ -61,23 +63,35 @@ const animateSection = (sectionsObj, index, direction) => {
   let getDirection = direction === -1 ? -1 : 1
 
   // Si hay una sección activa actualmente, animamos el fondo de esa sección para que desaparezca y ocultamos la sección y miniatura correspondientes
+
   if (currentSection >= 0) {
+    header.classList.remove('is-first');
     tl.to([bg[currentSection], miniItemsBg[currentSection]], { yPercent: -50 * getDirection })
-      .set([sections[currentSection], miniItems[currentSection]], { autoAlpha: 0 });
+      .set([sections[currentSection], miniItems[currentSection]], { autoAlpha: 0 })
   }
     
   // Asignamos la sección activa actual
   currentSection = index;
+ 
+  if (index === 0) {
+    header.classList.add('is-first');
+  }
 
   // Animamos el fondo y el contenedor de la nueva sección para que aparezcan
   tl.fromTo([bg[index], miniItemsBg[index]], { yPercent: -50 * (getDirection) }, { yPercent: 0 }, 0)
     .fromTo([[bgContainer[index], miniItemsBgContainer[index]]], { yPercent: 100 * (getDirection) }, { yPercent: 0 }, 0)
+
+  gsap.set(header, {opacity: 0});
+  
+  tl.fromTo(header, {opacity: 0}, {opacity: 1}, 0);
 }
 
 // Función para manejar el evento de scroll
 const handleScroll = (sectionsObj, index, direction) => {
   // Si no está ocurriendo ninguna animación, llamamos a la función animateSection con los parámetros correspondientes
+
   if (!isAnimating) {
+
     animateSection(sectionsObj, index, direction);
   }
 }
