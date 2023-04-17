@@ -83,10 +83,8 @@ body {
   text-transform: uppercase;
   font-family: var(--font-base);
   color: var(--color-primary);
-}
-
-.section-1 .side-text {
-  color: var(--color-tertiary);
+  letter-spacing: -1;
+  font-size: 16px;
 }
 
 .cursor {
@@ -149,8 +147,7 @@ body {
   width: 100%;
   background-size: cover;
   background-position: 50% 50%;
-  background-image: url('../images/cyberpunk-bg.jpg');
-  
+  background-image: url('../images/godofwar-bg.jpg');
 }
 
 .bg2 {
@@ -164,8 +161,8 @@ body {
 .slider-mini {
   position: fixed;
   z-index: 3;
-  height: 415px;
-  width: 302px;
+  height: 414px;
+  width: 301px;
   overflow: hidden;
   left: calc(25vw - 302px / 2);
   top: calc(50vh - 415px / 2);
@@ -186,7 +183,7 @@ body {
 
 .slider-mini-item-1 .bg {
   background-size: cover;
-  background-image: url('../images/cyberpunk-mini.jpg');
+  background-image: url('../images/godofwar-mini.jpg');
 }
 
 .slider-mini-item-2 .bg {
@@ -205,20 +202,52 @@ body {
   position: absolute;
   z-index: 1;
   color: var(--color-primary);
-  bottom: 25%;
-  font-size: 80px;
+  bottom: 0;
   width: 50%;
   text-align: center;
   right: 0;
   font-family: var(--font-display);
   font-weight: 250;
-  letter-spacing: -3;
+  letter-spacing: -1;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  font-size: 80px;
+  padding: 40px;
+  flex-wrap: wrap;
+  box-sizing: border-box;  
 }
 
 .text div {
   margin-right: 12px;
 }
 
+.text div:last-child {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 720px) {
+  .slider-section .inner-container .bg {
+    background-position: 0% 50%;
+    background-size: auto;
+  }
+
+  .slider-mini {
+    left: calc(50vw - 302px / 2);
+    transform: scale(0.8)
+  }
+
+  .text {
+    left: 0;
+    right: 0;
+    width: 100%;
+    font-size: 48px;
+  }
+}
+
+@media screen and (min-width: 720px) and (max-width: 1024px) {
+  .slider-mini {
+    transform: scale(0.6)
+  }
+
+}
