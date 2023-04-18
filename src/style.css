@@ -151,7 +151,7 @@ body {
 }
 
 .bg {
-  height: 100%;
+  min-height: 100vh;            /* fall-back */
   width: 100%;
   background-size: cover;
   background-position: 50% 50%;
@@ -184,6 +184,10 @@ body {
 }
 
 .slider-mini-item .bg {
+  min-height: 100vh;            /* fall-back */
+  min-height: -moz-available;
+  min-height: -webkit-fill-available;
+  min-height: fill-available;
   height: 100%;
   width: 100%;
   background-position: 50% 50%;
