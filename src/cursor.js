@@ -6,9 +6,8 @@ const cursor = document.querySelector(".cursor");
 const cursorSize = document.querySelector(".cursor").offsetWidth;
 const cursorMargin = cursorSize / 2;
 
-const initStateCursor = () => {
+const initCursor = () => {
   gsap.set(cursor, {
-    opacity: 0,
     left: `calc(50% - ${cursorMargin}px)`,
     top: `calc(50% - ${cursorMargin}px)`,
   });
@@ -17,7 +16,6 @@ const initStateCursor = () => {
 const mouseMove = (e) => {
   gsap.to(cursor, {
     duration: 0.5,
-    opacity: 1,
     left: `${e.clientX - cursorMargin}px`,
     top: `${e.clientY - cursorMargin}px`,
     ease: "power2.out",
@@ -27,7 +25,7 @@ const mouseMove = (e) => {
 const hideCursor = () => {
   gsap.to(cursor, {
     duration: 0.5,
-    scale: 0.5,
+    scale: 0,
     ease: "power2.out",
   });
 };
@@ -41,12 +39,16 @@ const showCursor = () => {
   });
 };
 
-const setCursor = () => {
-  initStateCursor();
+const cursorComponent = () => {
+  initCursor();
+  hideCursor();
 
   window.addEventListener("mousemove", (e) => {
     mouseMove(e);
+    setTimeout(() => {
+        showCursor();
+    }, 200);
   });
 };
 
-export { cursor, setCursor, hideCursor, showCursor };
+export { cursorComponent };
