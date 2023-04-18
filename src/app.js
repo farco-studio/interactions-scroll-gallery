@@ -3,17 +3,15 @@ import { Observer } from "gsap/Observer";
 
 gsap.registerPlugin(Observer);
 
-const mySections = {
-  sections: gsap.utils.toArray(".slider-section"),
-  bg: gsap.utils.toArray(".slider-section .bg"),
-  bgContainer: gsap.utils.toArray(".slider-section .inner-container"),
-  miniItems: gsap.utils.toArray(".slider-mini-item"),
-  miniItemsBg: gsap.utils.toArray(".slider-mini-item .bg"),
-  miniItemsBgContainer: gsap.utils.toArray(
-    ".slider-mini-item .inner-container"
-  ),
-  text: gsap.utils.toArray(".slider-section .text"),
-};
+const sections = gsap.utils.toArray(".slider-section");
+const bg = gsap.utils.toArray(".slider-section .bg");
+const bgContainer = gsap.utils.toArray(".slider-section .inner-container");
+const miniItems = gsap.utils.toArray(".slider-mini-item");
+const miniItemsBg = gsap.utils.toArray(".slider-mini-item .bg");
+const miniItemsBgContainer = gsap.utils.toArray(
+  ".slider-mini-item .inner-container"
+);
+const text = gsap.utils.toArray(".slider-section .text");
 
 let currentSection = -1;
 let isAnimating = false;
@@ -26,20 +24,11 @@ const setAnimating = (value) => {
   isAnimating = value;
 };
 
-const animateSection = (sectionsObj, index, direction) => {
-  const sections = sectionsObj.sections;
-  const bg = sectionsObj.bg;
-  const bgContainer = sectionsObj.bgContainer;
-  const miniItems = sectionsObj.miniItems;
-  const miniItemsBg = sectionsObj.miniItemsBg;
-  const miniItemsBgContainer = sectionsObj.miniItemsBgContainer;
-  const text = sectionsObj.text;
+const animateSection = (index, direction) => {
   let getDirection = direction === -1 ? -1 : 1;
 
-  // Envolvemos el índice de la sección
   index = wrapIndex(0, sections.length, index);
 
-  // Indicamos que la animación está activa
   setAnimating(true);
 
   const timeline = gsap.timeline({
@@ -55,31 +44,70 @@ const animateSection = (sectionsObj, index, direction) => {
   gsap.set([sections, miniItems], { zIndex: 0 });
   gsap.set([sections[index], miniItems[index]], { zIndex: 1, autoAlpha: 1 });
 
-  // Si hay una sección activa actualmente, animamos el fondo de esa sección para que desaparezca y ocultamos la sección y miniatura correspondientes
-
   if (currentSection >= 0) {
-    gsap
-      .timeline()
-      .set(text[currentSection], { opacity: 1 })
-      .fromTo(
-        text[currentSection],
-        { opacity: 1 },
-        { opacity: 0, duration: 0.3, yPercent: -50 * getDirection }
-      );
-
-    timeline
-      .to([bg[currentSection], miniItemsBg[currentSection]], {
-        yPercent: -50 * getDirection,
-      })
-      .set([sections[currentSection], miniItems[currentSection]], {
-        autoAlpha: 0,
-      });
+    animateSectionOut(
+      timeline,
+      text,
+      bg,
+      miniItemsBg,
+      sections,
+      miniItems,
+      currentSection,
+      getDirection
+    );
   }
 
-  // Asignamos la sección activa actual
   currentSection = index;
 
-  // Animamos el fondo y el contenedor de la nueva sección para que aparezcan
+  animateSectionIn(
+    timeline,
+    bg,
+    miniItemsBg,
+    bgContainer,
+    miniItemsBgContainer,
+    index,
+    getDirection
+  );
+  animateText(timeline, text, index, getDirection);
+};
+
+const animateSectionOut = (
+  timeline,
+  text,
+  bg,
+  miniItemsBg,
+  sections,
+  miniItems,
+  currentSection,
+  getDirection
+) => {
+  gsap
+    .timeline()
+    .set(text[currentSection], { opacity: 1 })
+    .fromTo(
+      text[currentSection],
+      { opacity: 1 },
+      { opacity: 0, duration: 0.3, yPercent: -50 * getDirection }
+    );
+
+  timeline
+    .to([bg[currentSection], miniItemsBg[currentSection]], {
+      yPercent: -50 * getDirection,
+    })
+    .set([sections[currentSection], miniItems[currentSection]], {
+      autoAlpha: 0,
+    });
+};
+
+const animateSectionIn = (
+  timeline,
+  bg,
+  miniItemsBg,
+  bgContainer,
+  miniItemsBgContainer,
+  index,
+  getDirection
+) => {
   timeline
     .fromTo(
       [bg[index], miniItemsBg[index]],
@@ -93,7 +121,9 @@ const animateSection = (sectionsObj, index, direction) => {
       { yPercent: 0 },
       0
     );
+};
 
+const animateText = (timeline, text, index, getDirection) => {
   gsap
     .timeline()
     .set(text[index], { opacity: 0 })
@@ -113,10 +143,10 @@ const handleScroll = (sectionsObj, index, direction) => {
 Observer.create({
   type: "wheel,touch,pointer",
   wheelSpeed: -1,
-  onDown: () => handleScroll(mySections, currentSection - 1, -1),
-  onUp: () => handleScroll(mySections, currentSection + 1, 1),
+  onDown: () => handleScroll(currentSection - 1, -1),
+  onUp: () => handleScroll(currentSection + 1, 1),
   tolerance: 50,
   preventDefault: true,
 });
 
-animateSection(mySections, 0, 1);
+animateSection(0, 1);
