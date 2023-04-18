@@ -80,7 +80,7 @@ body {
   left: 24px;
   z-index: 1;
   top: 0;
-  bottom: 10vh;
+  bottom: 0;
   writing-mode: vertical-lr;
   transform: rotate(180deg);
   text-align: center;
@@ -217,7 +217,7 @@ body {
   position: absolute;
   z-index: 1;
   color: var(--color-primary);
-  bottom: 0;
+  bottom: 10vh;
   width: 50%;
   text-align: center;
   right: 0;
