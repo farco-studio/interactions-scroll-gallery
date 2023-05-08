@@ -8,15 +8,15 @@ const bgContainerSelector = `${sliderSectionSelector} .inner-container`;
 const miniItemBgSelector = `${miniItemSelector} .bg`;
 const miniItemBgContainerSelector = `${miniItemSelector} .inner-container`;
 
-const sections = gsap.utils.toArray(sliderSectionSelector);
-const bg = gsap.utils.toArray(bgSelector);
-const bgContainer = gsap.utils.toArray(bgContainerSelector);
-const miniItems = gsap.utils.toArray(miniItemSelector);
-const miniItemsBg = gsap.utils.toArray(miniItemBgSelector);
-const miniItemsBgContainer = gsap.utils.toArray(miniItemBgContainerSelector);
-const text = gsap.utils.toArray(`${sliderSectionSelector} .text`);
-
 const sectionsAnimation = () => {
+  const sections = gsap.utils.toArray(sliderSectionSelector);
+  const bg = gsap.utils.toArray(bgSelector);
+  const bgContainer = gsap.utils.toArray(bgContainerSelector);
+  const miniItems = gsap.utils.toArray(miniItemSelector);
+  const miniItemsBg = gsap.utils.toArray(miniItemBgSelector);
+  const miniItemsBgContainer = gsap.utils.toArray(miniItemBgContainerSelector);
+  const text = gsap.utils.toArray(`${sliderSectionSelector} .text`);
+
   gsap.registerPlugin(Observer);
 
   let currentSection = -1;
