@@ -8,6 +8,15 @@
   --font-display: "Butler", sans-serif;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 body,
 html {
   margin: 0;
@@ -231,6 +240,12 @@ body {
   padding: 40px;
   flex-wrap: wrap;
   box-sizing: border-box;
+}
+
+.word {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 1s;  
 }
 
 .text div {

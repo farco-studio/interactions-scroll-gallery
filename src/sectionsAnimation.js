@@ -49,10 +49,11 @@ const sectionsAnimation = () => {
       },
     });
 
-    gsap.set([sections, miniItems], { zIndex: 0 });
+    gsap.set([sections, miniItems, text], { zIndex: 0 });
     gsap.set([sections[index], miniItems[index]], { zIndex: 1, autoAlpha: 1 });
 
     if (currentSection >= 0) {
+
       animateSectionOut(
         timeline,
         text,
