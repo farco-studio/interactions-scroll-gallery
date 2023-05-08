@@ -1,18 +1,18 @@
 :root {
-  --color-primary: #ECF2F4;
+  --color-primary: #ecf2f4;
   --color-secondary: #fff;
   --color-tertiary: #000;
   --bodycopy: 16px;
   --bodycopy-lh: 24px;
   --font-base: "Inter", sans-serif;
-  --font-display: 'Butler', sans-serif;
+  --font-display: "Butler", sans-serif;
 }
 
 body,
 html {
   margin: 0;
   padding: 0;
-  min-height: 100vh;            /* fall-back */
+  min-height: 100vh; /* fall-back */
   min-height: -moz-available;
   min-height: -webkit-fill-available;
   min-height: fill-available;
@@ -72,7 +72,7 @@ body {
 }
 
 .header.is-first a {
- color: var(--color-tertiary);
+  color: var(--color-tertiary);
 }
 
 .side-text {
@@ -126,7 +126,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  min-height: 100vh;            /* fall-back */
+  min-height: 100vh; /* fall-back */
   min-height: -moz-available;
   min-height: -webkit-fill-available;
   min-height: fill-available;
@@ -138,7 +138,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  min-height: 100vh;            /* fall-back */
+  min-height: 100vh; /* fall-back */
   min-height: -moz-available;
   min-height: -webkit-fill-available;
   min-height: fill-available;
@@ -154,19 +154,19 @@ body {
 }
 
 .bg {
-  min-height: 100vh;            /* fall-back */
+  min-height: 100vh; /* fall-back */
   width: 100%;
   background-size: cover;
   background-position: 50% 50%;
-  background-image: url('../images/godofwar-bg.jpg');
+  background-image: url("../images/godofwar-bg.jpg");
 }
 
 .bg2 {
-  background-image: url('../images/horizon-bg.jpg');
+  background-image: url("../images/horizon-bg.jpg");
 }
 
 .bg3 {
-  background-image: url('../images/the-witcher-bg.jpg');
+  background-image: url("../images/the-witcher-bg.jpg");
 }
 
 .slider-mini {
@@ -187,7 +187,7 @@ body {
 }
 
 .slider-mini-item .bg {
-  min-height: 100vh;            /* fall-back */
+  min-height: 100vh; /* fall-back */
   min-height: -moz-available;
   min-height: -webkit-fill-available;
   min-height: fill-available;
@@ -198,15 +198,15 @@ body {
 
 .slider-mini-item-1 .bg {
   background-size: cover;
-  background-image: url('../images/godofwar-mini.jpg');
+  background-image: url("../images/godofwar-mini.jpg");
 }
 
 .slider-mini-item-2 .bg {
-  background-image: url('../images/horizon-mini.jpg');
+  background-image: url("../images/horizon-mini.jpg");
 }
 
 .slider-mini-item-3 .bg {
-  background-image: url('../images/the-witcher-mini.jpg');
+  background-image: url("../images/the-witcher-mini.jpg");
 }
 
 .slider-section.active .bg {
@@ -230,7 +230,7 @@ body {
   font-size: 80px;
   padding: 40px;
   flex-wrap: wrap;
-  box-sizing: border-box;  
+  box-sizing: border-box;
 }
 
 .text div {
@@ -249,7 +249,7 @@ body {
 
   .slider-mini {
     left: calc(50vw - 302px / 2);
-    transform: scale(0.8)
+    transform: scale(0.8);
   }
 
   .text {
@@ -262,6 +262,6 @@ body {
 
 @media screen and (min-width: 720px) and (max-width: 1024px) {
   .slider-mini {
-    transform: scale(0.6)
+    transform: scale(0.6);
   }
 }

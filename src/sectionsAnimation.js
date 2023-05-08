@@ -1,15 +1,20 @@
 import { gsap } from "gsap";
 import { Observer } from "gsap/Observer";
 
-const sections = gsap.utils.toArray(".slider-section");
-const bg = gsap.utils.toArray(".slider-section .bg");
-const bgContainer = gsap.utils.toArray(".slider-section .inner-container");
-const miniItems = gsap.utils.toArray(".slider-mini-item");
-const miniItemsBg = gsap.utils.toArray(".slider-mini-item .bg");
-const miniItemsBgContainer = gsap.utils.toArray(
-  ".slider-mini-item .inner-container"
-);
-const text = gsap.utils.toArray(".slider-section .text");
+const sliderSectionSelector = ".slider-section";
+const miniItemSelector = ".slider-mini-item";
+const bgSelector = `${sliderSectionSelector} .bg`;
+const bgContainerSelector = `${sliderSectionSelector} .inner-container`;
+const miniItemBgSelector = `${miniItemSelector} .bg`;
+const miniItemBgContainerSelector = `${miniItemSelector} .inner-container`;
+
+const sections = gsap.utils.toArray(sliderSectionSelector);
+const bg = gsap.utils.toArray(bgSelector);
+const bgContainer = gsap.utils.toArray(bgContainerSelector);
+const miniItems = gsap.utils.toArray(miniItemSelector);
+const miniItemsBg = gsap.utils.toArray(miniItemBgSelector);
+const miniItemsBgContainer = gsap.utils.toArray(miniItemBgContainerSelector);
+const text = gsap.utils.toArray(`${sliderSectionSelector} .text`);
 
 const sectionsAnimation = () => {
   gsap.registerPlugin(Observer);
@@ -27,6 +32,8 @@ const sectionsAnimation = () => {
 
   const animateSection = (index, direction) => {
     let getDirection = direction === -1 ? -1 : 1;
+    
+    gsap.set(miniItems, { opacity: 1 });
 
     index = wrapIndex(0, sections.length, index);
 
@@ -69,7 +76,6 @@ const sectionsAnimation = () => {
       index,
       getDirection
     );
-    animateText(timeline, text, index, getDirection);
   };
 
   const animateSectionOut = (
@@ -82,20 +88,15 @@ const sectionsAnimation = () => {
     currentSection,
     getDirection
   ) => {
-    gsap
-      .timeline()
-      .set(text[currentSection], { opacity: 1 })
-      .fromTo(
-        text[currentSection],
-        { opacity: 1 },
-        { opacity: 0, duration: 0.3, yPercent: -50 * getDirection }
-      );
-
     timeline
-      .to([bg[currentSection], miniItemsBg[currentSection]], {
+      .to([bg[currentSection], text[currentSection], miniItemsBg[currentSection]], {
         yPercent: -50 * getDirection,
       })
-      .set([sections[currentSection], miniItems[currentSection]], {
+      .to(text[currentSection], {
+        autoAlpha: 0,
+        delay: -1.5,
+      })      
+      .set([sections[currentSection], miniItems[currentSection], text[currentSection]], {
         autoAlpha: 0,
       });
   };
@@ -110,6 +111,12 @@ const sectionsAnimation = () => {
     getDirection
   ) => {
     timeline
+
+    .to(text[index], {
+      autoAlpha: 1,
+      yPercent: 0,
+      delay: -1.5,
+    })      
       .fromTo(
         [bg[index], miniItemsBg[index]],
         { yPercent: -50 * getDirection },
@@ -124,16 +131,6 @@ const sectionsAnimation = () => {
       );
   };
 
-  const animateText = (timeline, text, index, getDirection) => {
-    gsap
-      .timeline()
-      .set(text[index], { opacity: 0 })
-      .fromTo(
-        text[index],
-        { opacity: 0, yPercent: -50 * getDirection },
-        { opacity: 1, duration: 0.3, yPercent: 0 }
-      );
-  };
 
   const handleScroll = (sectionsObj, index, direction) => {
     if (!isAnimating) {
