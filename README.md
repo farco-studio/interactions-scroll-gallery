@@ -1,6 +1,8 @@
-# scroll-gallery
+![Captura de Pantalla 2023-05-22 a las 13 10 32 (1) (1)](https://github.com/farco-studio/interactions-scroll-gallery/assets/854320/6dfe3439-0cd8-481b-947c-0514ec61c1fa)
 
-Free, refined interactions to inspire our community and make the web a more beautiful place.
+# Scroll Gallery Slider
+
+Scroll based slider with smooth animations
 
 [Demo](https://interactions-scroll-gallery.onrender.com/)
 
