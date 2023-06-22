@@ -4,7 +4,7 @@
 
 Scroll based slider with smooth animations
 
-[Demo](https://interactions-scroll-gallery.onrender.com/)
+[Demo](https://interactions-scroll-gallery-nwtl.onrender.com/)
 
 
 ## Installation
